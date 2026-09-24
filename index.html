@@ -217,7 +217,7 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(-
   <label class="ph"><input type="checkbox" data-f="f16"><span><span class="tm">Sera</span><span class="tx">Check-in al Galleria 10 Hotel.</span></span></label>
   <div class="day" data-date="2026-10-07">Mercoledì 7 ottobre · verso Pattaya</div>
   <label class="ph"><input type="checkbox" data-f="f17"><span><span class="tm">Entro le 12:00</span><span class="tx">Check-out dal Galleria 10.</span></span></label>
-  <label class="ph"><input type="checkbox" data-f="f18"><span><span class="tm">Circa 2 ore</span><span class="tx">Bolt o Grab fino al Mood Hotel (1.200–1.600 THB) oppure bus da Ekkamai.</span></span></label>
+  <label class="ph"><input type="checkbox" data-f="f18"><span><span class="tm">Circa 2 ore</span><span class="tx">Bolt o Grab fino al Mood Hotel (1.200–1.600 THB) oppure autobus da Ekkamai: i passi sono nella scheda Hotel.</span></span></label>
   <label class="ph"><input type="checkbox" data-f="f19"><span><span class="tm">Dalle 14:00</span><span class="tx">Check-in al Mood Hotel Pattaya.</span></span></label>
   <div class="day" data-date="2026-10-16">Venerdì 16 ottobre · preparati</div>
   <label class="ph"><input type="checkbox" data-f="f20"><span><span class="tm">Sera</span><span class="tx">Fai la valigia e il check-in online del volo di ritorno. Tieni da parte i baht per il Bolt all'aeroporto.</span></span></label>
@@ -279,9 +279,21 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(-
     <li><b class="t">Entro le 12:00</b>Check-out dal Galleria 10.</li>
     <li><b class="t">Viaggio di circa 2 ore</b>
       <p><b>Bolt o Grab</b> porta a porta (consigliato con la valigia): circa 1.200–1.600 THB.</p>
-      <p><b>Bus economico</b> dalla stazione Ekkamai (BTS Ekkamai, vicina all'hotel): circa 130–150 THB. A Pattaya poi prendi un Bolt.</p></li>
+      <p><b>Autobus</b> (economico, circa 3 ore in tutto): i passi sono qui sotto.</p></li>
     <li><b class="t">Dalle 14:00</b>Check-in al Mood Hotel.</li>
   </ol>
+
+  <h2>Se prendi l'autobus per Pattaya</h2>
+  <ol class="steps">
+    <li><b class="t">Dall'hotel alla stazione Ekkamai</b>Bolt o taxi fino alla stazione degli autobus <b>Ekkamai</b> (Eastern Bus Terminal): 10–20 minuti, circa 100 THB. Con la valigia è più comodo della metropolitana, che ha tante scale.
+      <p class="sub">In alternativa, skytrain BTS dalla fermata Asok o Nana verso Ekkamai: la stazione degli autobus è appena fuori dalla fermata BTS Ekkamai, lato Sukhumvit.</p></li>
+    <li><b class="t">Biglietto</b>Dentro la stazione cerca lo sportello <b>Pattaya</b> (compagnia Roong Reuang Coach). Circa 130–150 THB. Partenze circa ogni ora: prendi il primo posto libero.</li>
+    <li><b class="t">Viaggio</b>Circa 2 ore e mezza. Scendi al capolinea: <b>Pattaya Bus Terminal</b>, su North Pattaya Road.</li>
+    <li><b class="t">Fino all'hotel</b>Dalla stazione di Pattaya prendi un Bolt o Grab fino al Mood Hotel: 10–15 minuti, circa 100–150 THB.</li>
+  </ol>
+  <button class="btn main" data-driver="ekk">Mostra all'autista: stazione autobus Ekkamai</button>
+  <a class="btn alt" href="https://www.google.com/maps/search/?api=1&query=Ekkamai+Bus+Terminal+Bangkok" target="_blank" rel="noopener">Stazione Ekkamai in Google Maps</a>
+  <a class="btn alt" href="https://www.google.com/maps/search/?api=1&query=Pattaya+Bus+Terminal+North+Pattaya+Road" target="_blank" rel="noopener">Stazione di Pattaya in Google Maps</a>
 
   <h2>Pattaya · 7 → 17 ottobre</h2>
   <div class="card hotel">
@@ -341,7 +353,7 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(-
   </div>
   <h2>Aggiornamenti</h2>
   <button class="btn alt" id="updnow">Aggiorna l'app</button>
-  <p class="ver">L'app si aggiorna da sola quando la apri con internet. Questo tasto serve solo se vuoi forzarlo.<br>Versione: <span id="ver">8 · 24 set</span></p>
+  <p class="ver">L'app si aggiorna da sola quando la apri con internet. Questo tasto serve solo se vuoi forzarlo.<br>Versione: <span id="ver">9 · 24 set</span></p>
 </section>
 </main>
 
@@ -381,6 +393,8 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(-
          'สุขุมวิท ซอย 10<br>แขวงคลองเตย เขตคลองเตย<br>กรุงเทพฯ 10110'],
     pty:['Mood Hotel Pattaya','115/11 Moo 9,<br>Pattaya Beach Road,<br>Pattaya',
          '115/11 หมู่ 9 ถนนพัทยาสาย&nbsp;1<br>พัทยา ชลบุรี'],
+    ekk:['Ekkamai Bus Terminal','Eastern Bus Terminal,<br>Sukhumvit Road, Ekkamai,<br>Bangkok',
+         'สถานีขนส่งเอกมัย<br>(สถานีขนส่งผู้โดยสารกรุงเทพ ตะวันออก)'],
     air:['Suvarnabhumi Airport (BKK)','Departures, Air Arabia',
          'สนามบินสุวรรณภูมิ<br>ขาออก ชั้น 4']
   };

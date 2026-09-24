@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Thailandia">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#14213D">
+<meta name="robots" content="noindex, nofollow">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<title>Viaggio Thailandia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F3F6F5; --card:#FFFFFF; --ink:#14213D; --soft:#4A5670; --line:#D5DDE0;
+  --gold:#F2A900; --goldbg:#FFF4D1; --jade:#1F7A63; --jadebg:#E3F3EE;
+  --red:#B3261E; --redbg:#FBE7E5; --navy:#14213D; --onnavy:#FFFFFF;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0E1626; --card:#18233A; --ink:#F1F4F8; --soft:#AEB9CC; --line:#2C3A56;
+    --goldbg:#3A2F10; --jadebg:#12342C; --redbg:#3D1614; --navy:#22345A; --jade:#4CC3A2; --red:#FF8A80;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0E1626; --card:#18233A; --ink:#F1F4F8; --soft:#AEB9CC; --line:#2C3A56;
+  --goldbg:#3A2F10; --jadebg:#12342C; --redbg:#3D1614; --navy:#22345A; --jade:#4CC3A2; --red:#FF8A80;
+}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:"Atkinson Hyperlegible",-apple-system,"Helvetica Neue",Arial,sans-serif;
+  font-size:20px;line-height:1.45;-webkit-text-size-adjust:100%}
+main{max-width:640px;margin:0 auto;padding:16px 16px 120px}
+h1{font-size:30px;line-height:1.15;margin:8px 0 4px}
+h2{font-size:24px;margin:28px 0 10px}
+p{margin:6px 0}
+.sub{color:var(--soft);font-size:18px}
+.panel{display:none}.panel.on{display:block}
+
+/* hero: prossimo passo */
+.hero{background:var(--navy);color:var(--onnavy);border-radius:20px;padding:22px 20px;margin:12px 0 8px}
+.hero .when{font-size:18px;opacity:.85}
+.hero .what{font-size:28px;font-weight:700;line-height:1.2;margin:6px 0}
+.hero .count{display:inline-block;background:var(--gold);color:#14213D;font-weight:700;border-radius:999px;padding:6px 16px;margin-top:8px;font-size:20px}
+.hero .note{font-size:18px;margin-top:10px;opacity:.9}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:10px 0}
+.warn{background:var(--redbg);border-color:var(--red)}
+.warn b{color:var(--red)}
+.tip{background:var(--goldbg);border-color:var(--gold)}
+.hotel{background:var(--jadebg);border-color:var(--jade)}
+.hotel .name{font-size:24px;font-weight:700;color:var(--jade)}
+
+/* steps timeline */
+.steps{list-style:none;margin:0;padding:0;counter-reset:s}
+.steps li{position:relative;padding:0 0 22px 58px;counter-increment:s}
+.steps li::before{content:counter(s);position:absolute;left:0;top:0;width:42px;height:42px;border-radius:50%;
+  background:var(--navy);color:var(--onnavy);font-weight:700;display:flex;align-items:center;justify-content:center;font-size:21px}
+.steps li::after{content:"";position:absolute;left:20px;top:46px;bottom:4px;width:2px;background:var(--line)}
+.steps li:last-child::after{display:none}
+.steps b.t{display:block;font-size:22px}
+
+/* flights */
+.flight{display:grid;grid-template-columns:1fr auto;gap:2px 10px;padding:14px 0;border-bottom:1px solid var(--line)}
+.flight:last-child{border-bottom:0}
+.route{font-size:24px;font-weight:700}
+.fno{color:var(--soft);font-size:18px;text-align:right;align-self:center}
+.ftime{grid-column:1/-1;font-size:19px}
+
+/* checklist */
+.check{display:flex;gap:14px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--line);cursor:pointer}
+.check:last-child{border-bottom:0}
+.check input{width:28px;height:28px;flex:none;margin-top:2px;accent-color:var(--jade)}
+.check.done span{text-decoration:line-through;color:var(--soft)}
+
+.btn{display:block;width:100%;text-align:center;font:inherit;font-weight:700;font-size:21px;
+  padding:16px;border-radius:14px;border:0;margin:10px 0;text-decoration:none;cursor:pointer}
+.btn.main{background:var(--gold);color:#14213D}
+.btn.alt{background:transparent;color:var(--ink);border:2px solid var(--line)}
+a{color:inherit}
+.tel{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid var(--line);text-decoration:none}
+.tel:last-child{border-bottom:0}
+.tel strong{font-size:26px;color:var(--jade)}
+.phr{padding:10px 0;border-bottom:1px solid var(--line)}
+.phr:last-child{border-bottom:0}
+.phr b{font-size:23px;display:block}
+
+
+/* fasi */
+.prog{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin:12px 0;position:sticky;top:env(safe-area-inset-top,0px);z-index:2}
+.bar{height:12px;background:var(--line);border-radius:6px;overflow:hidden;margin-top:8px}
+.bar i{display:block;height:100%;background:var(--jade);width:0;transition:width .3s}
+.day{margin:22px 0 6px;font-size:23px;font-weight:700;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.day .today{background:var(--gold);color:#14213D;font-size:16px;border-radius:999px;padding:3px 12px}
+.ph{display:flex;gap:14px;align-items:flex-start;padding:14px 16px;background:var(--card);border:1px solid var(--line);border-radius:12px;margin:8px 0;cursor:pointer}
+.ph input{width:30px;height:30px;flex:none;margin-top:2px;accent-color:var(--jade)}
+.ph .tm{display:block;font-weight:700;color:var(--jade);font-size:19px}
+.ph.imp{border:2px solid var(--red)}
+.ph.imp .tm{color:var(--red)}
+.ph.done{opacity:.55}
+.ph.done .tx{text-decoration:line-through}
+
+/* bottom tab bar */
+nav{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:1px solid var(--line);
+  padding-bottom:env(safe-area-inset-bottom,0px);display:flex;justify-content:center;z-index:5}
+nav .in{display:flex;max-width:640px;width:100%}
+nav button{flex:1;background:none;border:0;font:inherit;font-size:13px;color:var(--soft);padding:10px 2px 12px;cursor:pointer}
+nav button .ic{display:block;font-size:24px;line-height:1.2}
+nav button.on{color:var(--ink);font-weight:700;box-shadow:inset 0 3px 0 var(--gold)}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+
+/* driver full screen */
+#driver{position:fixed;inset:0;background:#FFFFFF;color:#000;z-index:10;display:none;flex-direction:column;
+  justify-content:center;padding:calc(24px + env(safe-area-inset-top,0px)) 24px calc(24px + env(safe-area-inset-bottom,0px))}
+#driver.on{display:flex}
+#driver .lbl{font-size:22px;color:#555}
+#driver .dn{font-size:40px;font-weight:700;line-height:1.1;margin:10px 0 16px}
+#driver .da{font-size:30px;line-height:1.3}
+#driver .th{font-size:28px;line-height:1.4;margin-top:22px;padding-top:18px;border-top:2px solid #ddd}
+#driver .th .lbl{font-size:20px}
+#driver button,#driver a.btn{background:#14213D;color:#fff}
+#driver #dclose{margin-top:28px}
+#driver a.btn{background:#fff;color:#14213D;border:2px solid #14213D}
+.alert{background:var(--redbg);border:2px solid var(--red);border-radius:14px;padding:14px 16px;margin:10px 0}
+.alert b{color:var(--red)}
+.alert .btn{margin-bottom:0}
+.conv{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.conv label{font-size:17px;color:var(--soft)}
+.conv input{display:block;width:100%;font:inherit;font-size:26px;font-weight:700;padding:10px 12px;margin-top:4px;
+  border:2px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink)}
+.rate{font-size:17px;color:var(--soft);margin-top:10px}
+.rate input{width:90px;font:inherit;font-size:18px;padding:4px 8px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)}
+</style>
+</head>
+<body>
+<main>
+
+<!-- OGGI -->
+<section class="panel on" id="p-oggi">
+  <h1>Viaggio in Thailandia</h1>
+  <p class="sub">3 – 18 ottobre · voli Air Arabia</p>
+  <div class="hero" id="hero" aria-live="polite"></div>
+  <div class="alert" id="tdacwarn" hidden><b>TDAC non ancora spuntata.</b> Senza la TDAC all'immigrazione ti fermano: compilala ora, ci vogliono 10 minuti.
+    <a class="btn main" href="https://tdac.immigration.go.th/arrival-card/" target="_blank" rel="noopener">Compila la TDAC</a></div>
+  <button class="btn main" id="gofasi">Vedi tutte le fasi da fare</button>
+  <button class="btn alt" data-driver="bkk">Mostra all'autista: hotel Bangkok</button>
+  <button class="btn alt" data-driver="pty">Mostra all'autista: hotel Pattaya</button>
+
+  <h2>I tuoi voli</h2>
+  <div class="card">
+    <p class="sub">Andata</p>
+    <div class="flight"><span class="route">Bergamo → Sharjah</span><span class="fno">G9696</span>
+      <span class="ftime">Sab 3 ott, 22:50 → dom 4 ott, 06:50</span></div>
+    <div class="flight"><span class="route">Sharjah → Bangkok</span><span class="fno">G9816</span>
+      <span class="ftime">Dom 4 ott, 07:50 → 17:25</span></div>
+  </div>
+  <div class="card">
+    <p class="sub">Ritorno</p>
+    <div class="flight"><span class="route">Bangkok → Sharjah</span><span class="fno">G9817</span>
+      <span class="ftime">Sab 17 ott, 18:25 → 21:50</span></div>
+    <div class="flight"><span class="route">Sharjah → Bergamo</span><span class="fno">G9793</span>
+      <span class="ftime">Dom 18 ott, 07:50 → 12:30</span></div>
+  </div>
+  <p class="sub">Orari sempre in ora locale dell'aeroporto.</p>
+</section>
+
+<section class="panel" id="p-fasi">
+  <h1>Tutte le fasi</h1>
+  <p class="sub">Spunta ogni fase quando l'hai fatta. Le fasi in rosso sono le più importanti.</p>
+  <div class="prog"><span id="progt"></span><div class="bar"><i id="progb"></i></div></div>
+  <div class="day" data-date="">Prima di partire</div>
+  <label class="ph imp"><input type="checkbox" data-f="f1"><span><span class="tm">Da giovedì 1 ottobre</span><span class="tx">Compila la TDAC su tdac.immigration.go.th: volo G9816, hotel Galleria 10. Salva la conferma.</span></span></label>
+  <label class="ph"><input type="checkbox" data-f="f2"><span><span class="tm">Quando si apre</span><span class="tx">Fai il check-in online nell'app Air Arabia e salva le carte d'imbarco.</span></span></label>
+  <label class="ph"><input type="checkbox" data-f="f3"><span><span class="tm">Valigia</span><span class="tx">Passaporto, PDF stampato, un po' di euro in contanti, carta per l'ATM, caricabatterie e adattatore universale per le prese.</span></span></label>
+  <label class="ph"><input type="checkbox" data-f="f4"><span><span class="tm">Telefono</span><span class="tx">eSIM AIS installata, app Bolt e Grab registrate, questa app nella schermata Home.</span></span></label>
+  <div class="day" data-date="2026-10-03">Sabato 3 ottobre · partenza</div>
+  <label class="ph"><input type="checkbox" data-f="f5"><span><span class="tm">Entro le 17:00</span><span class="tx">Parti da casa per l'aeroporto di Bergamo Orio al Serio. Tieni margine per il traffico.</span></span></label>
+  <label class="ph imp"><input type="checkbox" data-f="f6"><span><span class="tm">Entro le 19:50</span><span class="tx">In aeroporto: banco Air Arabia, consegna la valigia. Chiedi che arrivi direttamente a Bangkok e fatti dare anche la carta d'imbarco Sharjah → Bangkok.</span></span></label>
+  <label class="ph"><input type="checkbox" data-f="f7"><span><span class="tm">Dopo il check-in</span><span class="tx">Controllo passaporti e sicurezza, poi al gate.</span></span></label>
+  <label class="ph"><input type="checkbox" data-f="f8"><span><span class="tm">22:50</span><span class="tx">Volo G9696 Bergamo → Sharjah.</span></span></label>
+  <div class="day" data-date="2026-10-04">Domenica 4 ottobre · arrivo</div>
+  <label class="ph imp"><input type="checkbox" data-f="f9"><span><span class="tm">06:50 Sharjah</span><span class="tx">Hai solo 1 ora di scalo. Non uscire: segui subito i cartelli Transfer / Flight connections e vai al gate del G9816.</span></span></label>
+  <label class="ph"><input type="checkbox" data-f="f10"><span><span class="tm">07:50</span><span class="tx">Volo G9816 Sharjah → Bangkok.</span></span></label>
+  <label class="ph"><input type="checkbox" data-f="f11"><span><span class="tm">17:25 Bangkok</span><span class="tx">Atterraggio. Attiva i dati dell'eSIM AIS.</span></span></label>
+  <label class="ph"><input type="checkbox" data-f="f12"><span><span class="tm">Subito dopo</span><span class="tx">Immigrazione con il passaporto (30–60 minuti).</span></span></label>
+  <label class="ph"><input type="checkbox" data-f="f13"><span><span class="tm">Poi</span><span class="tx">Ritiro valigia al nastro del G9816, dogana dalla corsia verde.</span></span></label>
+  <label class="ph"><input type="checkbox" data-f="f14"><span><span class="tm">Nella hall</span><span class="tx">Contanti da SuperRich al piano B1, se ti servono.</span></span></label>
+  <label class="ph imp"><input type="checkbox" data-f="f15"><span><span class="tm">Verso l'hotel</span><span class="tx">Bolt o Grab (350–500 THB) oppure taxi ufficiale al piano 1. Mai i taxi offerti a voce.</span></span></label>
+  <label class="ph"><input type="checkbox" data-f="f16"><span><span class="tm">Sera</span><span class="tx">Check-in al Galleria 10 Hotel.</span></span></label>
+  <div class="day" data-date="2026-10-07">Mercoledì 7 ottobre · verso Pattaya</div>
+  <label class="ph"><input type="checkbox" data-f="f17"><span><span class="tm">Entro le 12:00</span><span class="tx">Check-out dal Galleria 10.</span></span></label>
+  <label class="ph"><input type="checkbox" data-f="f18"><span><span class="tm">Circa 2 ore</span><span class="tx">Bolt o Grab fino al Mood Hotel (1.200–1.600 THB) oppure bus da Ekkamai.</span></span></label>
+  <label class="ph"><input type="checkbox" data-f="f19"><span><span class="tm">Dalle 14:00</span><span class="tx">Check-in al Mood Hotel Pattaya.</span></span></label>
+  <div class="day" data-date="2026-10-16">Venerdì 16 ottobre · preparati</div>
+  <label class="ph"><input type="checkbox" data-f="f20"><span><span class="tm">Sera</span><span class="tx">Fai la valigia e il check-in online del volo di ritorno. Tieni da parte i baht per il Bolt all'aeroporto.</span></span></label>
+  <div class="day" data-date="2026-10-17">Sabato 17 ottobre · ritorno</div>
+  <label class="ph"><input type="checkbox" data-f="f21"><span><span class="tm">Entro le 12:00</span><span class="tx">Check-out dal Mood Hotel.</span></span></label>
+  <label class="ph imp"><input type="checkbox" data-f="f22"><span><span class="tm">Entro le 12:30</span><span class="tx">Parti con Bolt o Grab per l'aeroporto Suvarnabhumi (1 ora e mezza – 2 ore).</span></span></label>
+  <label class="ph imp"><input type="checkbox" data-f="f23"><span><span class="tm">Entro le 15:30</span><span class="tx">Piano 4, banchi Air Arabia. Consegna la valigia: chiedi che arrivi a Bergamo e fatti dare anche la carta d'imbarco Sharjah → Bergamo.</span></span></label>
+  <label class="ph"><input type="checkbox" data-f="f24"><span><span class="tm">Dopo il check-in</span><span class="tx">Controllo passaporti e sicurezza, poi al gate.</span></span></label>
+  <label class="ph"><input type="checkbox" data-f="f25"><span><span class="tm">18:25</span><span class="tx">Volo G9817 Bangkok → Sharjah.</span></span></label>
+  <label class="ph"><input type="checkbox" data-f="f26"><span><span class="tm">21:50 Sharjah</span><span class="tx">Scalo di notte di circa 10 ore. Resta nell'area transiti e segui i cartelli Transfer.</span></span></label>
+  <div class="day" data-date="2026-10-18">Domenica 18 ottobre · a casa</div>
+  <label class="ph"><input type="checkbox" data-f="f27"><span><span class="tm">07:50</span><span class="tx">Volo G9793 Sharjah → Bergamo.</span></span></label>
+  <label class="ph"><input type="checkbox" data-f="f28"><span><span class="tm">12:30 Bergamo</span><span class="tx">Atterraggio, controllo passaporti, ritiro valigia e rientro a casa.</span></span></label>
+  <button class="btn alt" id="reset">Azzera tutte le spunte</button>
+</section>
+
+<!-- ARRIVO -->
+<section class="panel" id="p-arrivo">
+  <h1>Arrivo a Bangkok</h1>
+  <p class="sub">Suvarnabhumi (BKK) · domenica 4 ottobre, 17:25</p>
+
+  <h2>Prima di partire</h2>
+  <div class="card tip"><b>TDAC:</b> il modulo d'ingresso online, obbligatorio. Si compila dal 1 ottobre (massimo 3 giorni prima dell'arrivo): volo G9816, hotel Galleria 10. Salva la conferma nel telefono. La spunta la trovi nella scheda Fasi.</div>
+  <a class="btn alt" href="https://tdac.immigration.go.th/arrival-card/" target="_blank" rel="noopener">Compila la TDAC</a>
+
+  <h2>In aeroporto</h2>
+  <ol class="steps">
+    <li><b class="t">Immigrazione</b>Segui i cartelli Arrival / Immigration. Mostra il passaporto. Attesa possibile 30–60 minuti.</li>
+    <li><b class="t">Ritiro bagagli</b>Sugli schermi cerca il volo G9816: ti indica il nastro (Belt).</li>
+    <li><b class="t">Dogana</b>Corsia verde "Nothing to declare", poi esci nella hall arrivi.</li>
+    <li><b class="t">Contanti</b>Cambio migliore da SuperRich al piano B1. Gli ATM costano circa 220 THB a prelievo.</li>
+    <li><b class="t">Verso l'hotel</b>
+      <p><b>Bolt o Grab</b> (consigliato): prezzo fisso, circa 350–500 THB. Il punto di ritiro è indicato nell'app. Controlla la targa.</p>
+      <p><b>Taxi pubblico</b>: piano 1, biglietto al chiosco. Tassametro + 50 THB + pedaggi. Totale circa 400–500 THB.</p>
+      <p>Con il traffico serale il viaggio dura 45–90 minuti.</p></li>
+  </ol>
+  <div class="card warn"><b>Attenzione:</b> non accettare "taxi" offerti a voce nella hall. Solo app o fila ufficiale, sempre col tassametro.</div>
+  <button class="btn main" data-driver="bkk">Mostra all'autista l'indirizzo</button>
+</section>
+
+<!-- HOTEL -->
+<section class="panel" id="p-hotel">
+  <h1>Hotel</h1>
+
+  <h2>Bangkok · 4 → 7 ottobre</h2>
+  <div class="card hotel">
+    <div class="name">Galleria 10 Hotel Bangkok</div>
+    <p>21 Sukhumvit 10, Sukhumvit Road, Klongtoey, Bangkok 10110</p>
+    <p><b>Check-in</b> 4 ott, dalle 14:00<br><b>Check-out</b> 7 ott, entro le 12:00</p>
+    <p class="sub">Deluxe Chill Room · non rimborsabile</p>
+  </div>
+  <button class="btn main" data-driver="bkk">Mostra all'autista</button>
+  <a class="btn alt" href="https://www.google.com/maps/search/?api=1&query=Galleria+10+Hotel+Bangkok+Sukhumvit+10" target="_blank" rel="noopener">Apri in Google Maps</a>
+
+  <h2>7 ottobre: Bangkok → Pattaya</h2>
+  <ol class="steps">
+    <li><b class="t">Entro le 12:00</b>Check-out dal Galleria 10.</li>
+    <li><b class="t">Viaggio di circa 2 ore</b>
+      <p><b>Bolt o Grab</b> porta a porta (consigliato con la valigia): circa 1.200–1.600 THB.</p>
+      <p><b>Bus economico</b> dalla stazione Ekkamai (BTS Ekkamai, vicina all'hotel): circa 130–150 THB. A Pattaya poi prendi un Bolt.</p></li>
+    <li><b class="t">Dalle 14:00</b>Check-in al Mood Hotel.</li>
+  </ol>
+
+  <h2>Pattaya · 7 → 17 ottobre</h2>
+  <div class="card hotel">
+    <div class="name">Mood Hotel Pattaya</div>
+    <p>115/11 Moo 9, Pattaya Beach Road, Pattaya</p>
+    <p><b>Check-in</b> 7 ott, dalle 14:00<br><b>Check-out</b> 17 ott, entro le 12:00</p>
+    <p class="sub">Mood S Double Bed · annullamento gratuito fino a sab 3 ott, 10:00</p>
+  </div>
+  <button class="btn main" data-driver="pty">Mostra all'autista</button>
+  <a class="btn alt" href="https://www.google.com/maps/search/?api=1&query=Mood+Hotel+Pattaya+Beach+Road" target="_blank" rel="noopener">Apri in Google Maps</a>
+</section>
+
+<!-- RITORNO -->
+<section class="panel" id="p-ritorno">
+  <h1>Ritorno</h1>
+  <p class="sub">Sabato 17 ottobre · volo G9817 alle 18:25</p>
+  <ol class="steps">
+    <li><b class="t">Entro le 12:00</b>Check-out dal Mood Hotel.</li>
+    <li><b class="t">Partenza entro le 12:30</b>Bolt o Grab fino all'aeroporto Suvarnabhumi (BKK): circa 1.200–1.600 THB, 1 ora e mezza – 2 ore. In alternativa chiedi alla reception un taxi a prezzo fisso.</li>
+    <li><b class="t">In aeroporto entro le 15:00–15:30</b>Piano 4, Partenze. Cerca i banchi Air Arabia sugli schermi e consegna la valigia.</li>
+    <li><b class="t">Controlli</b>Passaporto e sicurezza, poi al gate. I banchi chiudono circa 1 ora prima del volo.</li>
+  </ol>
+  <div class="card tip"><b>Al check-in chiedi:</b> la valigia arriva direttamente a Bergamo? Mi date anche la carta d'imbarco per Sharjah → Bergamo?</div>
+  <div class="card"><b>Scalo a Sharjah</b><p>Circa 10 ore di notte: arrivi alle 21:50, riparti alle 07:50. Resta nell'area transiti e segui i cartelli "Transfer".</p></div>
+  <button class="btn main" data-driver="air">Mostra all'autista: aeroporto</button>
+</section>
+
+<!-- UTILI -->
+<section class="panel" id="p-utili">
+  <h1>Numeri e parole utili</h1>
+  <h2>Tocca per chiamare</h2>
+  <div class="card">
+    <a class="tel" href="tel:1155"><span>Polizia turistica<br><span class="sub">parla inglese</span></span><strong>1155</strong></a>
+    <a class="tel" href="tel:191"><span>Polizia</span><strong>191</strong></a>
+    <a class="tel" href="tel:1669"><span>Ambulanza</span><strong>1669</strong></a>
+    <a class="tel" href="tel:+6622504970"><span>Ambasciata d'Italia<br><span class="sub">Bangkok, orari d'ufficio</span></span><strong>02 250 4970</strong></a>
+  </div>
+  <h2>Parole</h2>
+  <div class="card">
+    <div class="phr"><b>Meter, please</b>Tassametro, per favore</div>
+    <div class="phr"><b>Khob khun khrap</b>Grazie</div>
+    <div class="phr"><b>Sawasdee khrap</b>Ciao, buongiorno</div>
+    <div class="phr"><b>Tao rai khrap?</b>Quanto costa?</div>
+    <div class="phr"><b>Mai pet</b>Non piccante</div>
+    <div class="phr"><b>Mai ao khrap</b>No grazie, non mi serve</div>
+    <div class="phr"><b>Hong nam yu tee nai khrap?</b>Dov'è il bagno?</div>
+    <div class="phr"><b>Pheng pai khrap</b>Troppo caro</div>
+  </div>
+  <h2>Quanto costa in euro?</h2>
+  <div class="card">
+    <div class="conv">
+      <label>Baht (THB)<input id="thb" type="number" inputmode="decimal" placeholder="500"></label>
+      <label>Euro (€)<input id="eur" type="number" inputmode="decimal" placeholder="0"></label>
+    </div>
+    <p class="rate">Cambio usato: 1 € = <input id="rate" type="number" inputmode="decimal" step="0.1"> baht.
+      Controllalo sull'app della banca e correggilo qui: lo ricorda.</p>
+  </div>
+</section>
+</main>
+
+<nav aria-label="Sezioni"><div class="in">
+  <button class="on" data-p="oggi"><span class="ic">✈️</span>Oggi</button>
+  <button data-p="fasi"><span class="ic">✅</span>Fasi</button>
+  <button data-p="arrivo"><span class="ic">🛬</span>Arrivo</button>
+  <button data-p="hotel"><span class="ic">🏨</span>Hotel</button>
+  <button data-p="ritorno"><span class="ic">🏠</span>Ritorno</button>
+  <button data-p="utili"><span class="ic">☎️</span>Utili</button>
+</div></nav>
+
+<div id="driver" role="dialog" aria-modal="true" aria-label="Indirizzo per l'autista">
+  <div class="lbl">Please take me to:</div>
+  <div class="dn" id="dn"></div>
+  <div class="da" id="da"></div>
+  <div class="th"><div class="lbl">กรุณาไปส่งที่</div><div id="dt"></div></div>
+  <button class="btn" id="dclose">Chiudi</button>
+</div>
+
+<script>
+(function(){
+  // tabs (l'app si apre sempre su Oggi)
+  var btns=document.querySelectorAll('nav button');
+  function show(p){
+    btns.forEach(function(b){b.classList.toggle('on',b.dataset.p===p)});
+    document.querySelectorAll('.panel').forEach(function(s){s.classList.toggle('on',s.id==='p-'+p)});
+    window.scrollTo(0,0);
+  }
+  btns.forEach(function(b){b.addEventListener('click',function(){show(b.dataset.p)})});
+
+  // driver screen
+  var D={
+    bkk:['Galleria 10 Hotel Bangkok','21 Sukhumvit Soi 10,<br>Sukhumvit Road, Klongtoey,<br>Bangkok 10110',
+         'สุขุมวิท ซอย 10<br>แขวงคลองเตย เขตคลองเตย<br>กรุงเทพฯ 10110'],
+    pty:['Mood Hotel Pattaya','115/11 Moo 9,<br>Pattaya Beach Road,<br>Pattaya',
+         '115/11 หมู่ 9 ถนนพัทยาสาย&nbsp;1<br>พัทยา ชลบุรี'],
+    air:['Suvarnabhumi Airport (BKK)','Departures, Air Arabia',
+         'สนามบินสุวรรณภูมิ<br>ขาออก ชั้น 4']
+  };
+  var dr=document.getElementById('driver'), lock=null;
+  function closeDriver(){
+    dr.classList.remove('on');
+    if(lock){try{lock.release()}catch(e){} lock=null;}
+  }
+  document.querySelectorAll('[data-driver]').forEach(function(b){
+    b.addEventListener('click',function(){
+      var d=D[b.dataset.driver];
+      document.getElementById('dn').textContent=d[0];
+      document.getElementById('da').innerHTML=d[1];
+      document.getElementById('dt').innerHTML=d[2];
+      dr.classList.add('on');
+      // lo schermo resta acceso mentre l'autista legge
+      try{navigator.wakeLock.request('screen').then(function(l){lock=l}).catch(function(){})}catch(e){}
+    });
+  });
+  document.getElementById('dclose').addEventListener('click',closeDriver);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeDriver()});
+
+
+  // fasi
+  var F=document.querySelectorAll('#p-fasi input');
+  function prog(){
+    var d=0; F.forEach(function(i){if(i.checked)d++});
+    document.getElementById('progt').textContent=d+' fasi fatte su '+F.length;
+    document.getElementById('progb').style.width=(100*d/F.length)+'%';
+  }
+  F.forEach(function(i){
+    var k='fase-'+i.dataset.f;
+    try{i.checked=localStorage.getItem(k)==='1'}catch(e){}
+    i.closest('.ph').classList.toggle('done',i.checked);
+    i.addEventListener('change',function(){
+      i.closest('.ph').classList.toggle('done',i.checked);
+      try{localStorage.setItem(k,i.checked?'1':'0')}catch(e){}
+      prog();
+    });
+  });
+  prog();
+  document.getElementById('reset').addEventListener('click',function(){
+    if(!confirm('Vuoi togliere tutte le spunte?'))return;
+    F.forEach(function(i){i.checked=false;i.closest('.ph').classList.remove('done');try{localStorage.removeItem('fase-'+i.dataset.f)}catch(e){}});
+    prog();
+  });
+  var dt=new Date(), today=dt.getFullYear()+'-'+String(dt.getMonth()+1).padStart(2,'0')+'-'+String(dt.getDate()).padStart(2,'0');
+  var todayEl=null;
+  document.querySelectorAll('#p-fasi .day').forEach(function(el){
+    if(el.dataset.date===today){var b=document.createElement('span');b.className='today';b.textContent='Oggi';el.appendChild(b);todayEl=el;}
+  });
+  if(todayEl) document.getElementById('gofasi').textContent='Cosa fare oggi';
+  document.getElementById('gofasi').addEventListener('click',function(){
+    show('fasi');
+    if(todayEl) setTimeout(function(){todayEl.scrollIntoView({block:'start'})},50);
+  });
+
+  // prossimo passo: ogni orario e' mostrato nel fuso del posto in cui succede
+  var TZ={it:['Europe/Rome','ora italiana'],ae:['Asia/Dubai','ora di Sharjah'],th:['Asia/Bangkok','ora thailandese']};
+  var E=[
+    ['2026-10-01T00:00:00+07:00','th','Si apre la TDAC','Da quel giorno puoi compilare il modulo d\'ingresso online.'],
+    ['2026-10-03T17:00:00+02:00','it','Partenza da casa per Bergamo','Entro le 17:00. Al banco Air Arabia entro le 19:50.'],
+    ['2026-10-03T19:50:00+02:00','it','Banco Air Arabia, consegna valigia','Chiedi che arrivi a Bangkok e la carta d\'imbarco anche per Sharjah → Bangkok.'],
+    ['2026-10-03T22:50:00+02:00','it','Volo Bergamo → Sharjah','G9696 alle 22:50.'],
+    ['2026-10-04T07:50:00+04:00','ae','Volo Sharjah → Bangkok','G9816 alle 07:50. Scalo di 1 ora: segui subito i cartelli Transfer.'],
+    ['2026-10-04T17:25:00+07:00','th','Atterraggio a Bangkok','Poi immigrazione, bagagli e Bolt verso il Galleria 10.'],
+    ['2026-10-07T12:00:00+07:00','th','Check-out e partenza per Pattaya','Galleria 10 entro le 12:00, poi Bolt o bus per il Mood Hotel.'],
+    ['2026-10-17T12:00:00+07:00','th','Check-out dal Mood Hotel','Parti per l\'aeroporto entro le 12:30.'],
+    ['2026-10-17T15:30:00+07:00','th','Banco Air Arabia a Suvarnabhumi','Piano 4. Chiedi che la valigia arrivi a Bergamo.'],
+    ['2026-10-17T18:25:00+07:00','th','Volo Bangkok → Sharjah','G9817 alle 18:25.'],
+    ['2026-10-18T07:50:00+04:00','ae','Volo Sharjah → Bergamo','G9793 alle 07:50, arrivo a Bergamo alle 12:30.']
+  ];
+  function fmt(t,z){
+    return new Intl.DateTimeFormat('it-IT',{weekday:'long',day:'numeric',month:'long',hour:'2-digit',minute:'2-digit',timeZone:TZ[z][0]}).format(t)+' ('+TZ[z][1]+')';
+  }
+  var tdacBox=document.getElementById('tdacwarn'), tdacIn=document.querySelector('[data-f="f1"]');
+  function render(){
+    var now=Date.now(), h=document.getElementById('hero'), n=null;
+    // promemoria TDAC: dal 1 ottobre all'atterraggio, finche' non e' spuntata
+    tdacBox.hidden=!(now>=Date.parse('2026-10-01T00:00:00+07:00') && now<Date.parse('2026-10-04T17:25:00+07:00') && !tdacIn.checked);
+    for(var i=0;i<E.length;i++){ if(Date.parse(E[i][0])>now){n=E[i];break;} }
+    if(!n){h.innerHTML='<div class="what">Bentornato a casa!</div><div class="note">Il viaggio è concluso.</div>';return;}
+    var ms=Date.parse(n[0])-now, d=Math.floor(ms/864e5), hr=Math.floor(ms%864e5/36e5), mi=Math.floor(ms%36e5/6e4);
+    var c=d>0?('tra '+d+(d===1?' giorno':' giorni')+(hr?' e '+hr+' h':'')):(hr>0?'tra '+hr+' h e '+mi+' min':'tra '+mi+' min');
+    h.innerHTML='<div class="when">Prossimo passo</div><div class="what"></div><div class="note"></div><span class="count"></span><div class="note" style="font-size:16px"></div>';
+    h.querySelector('.what').textContent=n[2];
+    h.querySelectorAll('.note')[0].textContent=n[3];
+    h.querySelector('.count').textContent=c;
+    h.querySelectorAll('.note')[1].textContent=fmt(new Date(n[0]),n[1]);
+  }
+  if(tdacIn) tdacIn.addEventListener('change',render);
+  document.addEventListener('visibilitychange',function(){if(!document.hidden)render()});
+  render(); setInterval(render,60000);
+
+  // convertitore baht / euro
+  var thb=document.getElementById('thb'), eur=document.getElementById('eur'), rate=document.getElementById('rate');
+  try{rate.value=localStorage.getItem('rate')||'38'}catch(e){rate.value='38'}
+  function r(){var v=parseFloat(String(rate.value).replace(',','.'));return v>0?v:38}
+  function round(x,dec){var m=Math.pow(10,dec);return Math.round(x*m)/m}
+  thb.addEventListener('input',function(){eur.value=thb.value===''?'':round(parseFloat(thb.value)/r(),2)});
+  eur.addEventListener('input',function(){thb.value=eur.value===''?'':round(parseFloat(eur.value)*r(),0)});
+  rate.addEventListener('input',function(){
+    try{localStorage.setItem('rate',rate.value)}catch(e){}
+    if(thb.value!=='') eur.value=round(parseFloat(thb.value)/r(),2);
+  });
+
+  // funziona anche senza internet
+  if('serviceWorker' in navigator && location.protocol==='https:'){
+    navigator.serviceWorker.register('sw.js').catch(function(){});
+  }
+})();
+</script>
+</body>
+</html>

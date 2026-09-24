@@ -133,6 +133,11 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(-
 .alert{background:var(--redbg);border:2px solid var(--red);border-radius:14px;padding:14px 16px;margin:10px 0}
 .alert b{color:var(--red)}
 .alert .btn{margin-bottom:0}
+#upd{position:fixed;left:12px;right:12px;bottom:calc(84px + env(safe-area-inset-bottom,0px));z-index:6;max-width:616px;margin:0 auto;
+  background:var(--jade);color:#fff;border:0;border-radius:14px;padding:14px 16px;font:inherit;font-size:19px;font-weight:700;
+  box-shadow:0 6px 20px rgba(0,0,0,.25);cursor:pointer;display:none}
+#upd.on{display:block}
+.ver{font-size:16px;color:var(--soft);text-align:center;margin-top:4px}
 .conv{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .conv label{font-size:17px;color:var(--soft)}
 .conv input{display:block;width:100%;font:inherit;font-size:26px;font-weight:700;padding:10px 12px;margin-top:4px;
@@ -319,6 +324,9 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(-
     <p class="rate">Cambio usato: 1 € = <input id="rate" type="number" inputmode="decimal" step="0.1"> baht.
       Controllalo sull'app della banca e correggilo qui: lo ricorda.</p>
   </div>
+  <h2>Aggiornamenti</h2>
+  <button class="btn alt" id="updnow">Aggiorna l'app</button>
+  <p class="ver">L'app si aggiorna da sola quando la apri con internet. Questo tasto serve solo se vuoi forzarlo.<br>Versione: <span id="ver">5 · 24 set</span></p>
 </section>
 </main>
 
@@ -330,6 +338,8 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(-
   <button data-p="ritorno"><span class="ic">🏠</span>Ritorno</button>
   <button data-p="utili"><span class="ic">☎️</span>Utili</button>
 </div></nav>
+
+<button id="upd">C'è una versione nuova · tocca per aggiornare</button>
 
 <div id="driver" role="dialog" aria-modal="true" aria-label="Indirizzo per l'autista">
   <div class="lbl">Please take me to:</div>
@@ -463,8 +473,26 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(-
   });
 
   // funziona anche senza internet
+  // aggiornamenti: il telefono controlla da solo se c'e' una versione nuova
+  var upd=document.getElementById('upd');
+  function reloadFresh(){
+    var done=function(){location.reload()};
+    try{caches.keys().then(function(ks){return Promise.all(ks.map(function(k){return caches.delete(k)}))}).then(done,done)}catch(e){done()}
+  }
+  upd.addEventListener('click',reloadFresh);
+  document.getElementById('updnow').addEventListener('click',function(){
+    this.textContent='Aggiorno…';
+    if(!navigator.onLine){alert('Serve internet per aggiornare. Riprova quando hai campo.');this.textContent='Aggiorna l\'app';return;}
+    var go=function(){reloadFresh()};
+    if(window.swReg) window.swReg.update().then(go,go); else go();
+  });
   if('serviceWorker' in navigator && location.protocol==='https:'){
-    navigator.serviceWorker.register('sw.js').catch(function(){});
+    var hadSW=!!navigator.serviceWorker.controller;
+    navigator.serviceWorker.addEventListener('controllerchange',function(){ if(hadSW) upd.classList.add('on'); });
+    navigator.serviceWorker.register('sw.js').then(function(reg){
+      window.swReg=reg;
+      document.addEventListener('visibilitychange',function(){ if(!document.hidden) reg.update().catch(function(){}); });
+    }).catch(function(){});
   }
 })();
 </script>

@@ -110,6 +110,20 @@ a{color:inherit}
 .ph.done{opacity:.55}
 .ph.done .tx{text-decoration:line-through}
 
+
+/* prenotazioni salvate nel telefono */
+.dochint{font-size:16px;color:var(--soft);margin:-2px 0 8px}
+#docv{position:fixed;inset:0;background:#fff;z-index:11;display:none;flex-direction:column}
+#docv.on{display:flex}
+#docv .bar2{display:flex;gap:8px;align-items:center;padding:calc(10px + env(safe-area-inset-top,0px)) 12px 10px;background:#14213D;color:#fff}
+#docv .bar2 b{flex:1;font-size:18px;line-height:1.2}
+#docv .bar2 button{background:#F2A900;color:#14213D;border:0;border-radius:10px;font:inherit;font-weight:700;font-size:17px;padding:8px 14px;cursor:pointer}
+#docv .body{flex:1;overflow:auto;-webkit-overflow-scrolling:touch;background:#fff}
+#docv .body img{display:block;width:100%;height:auto}
+#docv .body iframe{display:block;width:100%;height:100%;border:0}
+#docv .foot{display:flex;gap:8px;padding:10px 12px calc(10px + env(safe-area-inset-bottom,0px));background:#F3F6F5}
+#docv .foot a,#docv .foot button{flex:1;text-align:center;font:inherit;font-size:16px;font-weight:700;padding:10px;border-radius:10px;border:2px solid #D5DDE0;background:#fff;color:#14213D;text-decoration:none;cursor:pointer}
+
 /* bottom tab bar */
 nav{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:1px solid var(--line);
   padding-bottom:env(safe-area-inset-bottom,0px);display:flex;justify-content:center;z-index:5}
@@ -270,8 +284,10 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(-
     <p>21 Sukhumvit 10, Sukhumvit Road, Klongtoey, Bangkok 10110</p>
     <p><b>Check-in</b> 4 ott, dalle 14:00<br><b>Check-out</b> 7 ott, entro le 12:00</p>
     <p class="sub">Deluxe Chill Room · non rimborsabile</p>
+    <p><a href="tel:+6626150999"><b>Chiama l'hotel: +66 2 615 0999</b></a></p>
   </div>
   <button class="btn main" data-driver="bkk">Mostra all'autista</button>
+  <div data-doc="bkk"></div>
   <a class="btn alt" href="https://www.google.com/maps/search/?api=1&query=Galleria+10+Hotel+Bangkok+Sukhumvit+10" target="_blank" rel="noopener">Apri in Google Maps</a>
 
   <h2>7 ottobre: Bangkok → Pattaya</h2>
@@ -301,8 +317,10 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(-
     <p>115/11 Moo 9, Pattaya Beach Road, Pattaya</p>
     <p><b>Check-in</b> 7 ott, dalle 14:00<br><b>Check-out</b> 17 ott, entro le 12:00</p>
     <p class="sub">Mood S Double Bed · annullamento gratuito fino a sab 3 ott, 10:00</p>
+    <p><a href="tel:+6638259511"><b>Chiama l'hotel: +66 38 259 511</b></a></p>
   </div>
   <button class="btn main" data-driver="pty">Mostra all'autista</button>
+  <div data-doc="pty"></div>
   <a class="btn alt" href="https://www.google.com/maps/search/?api=1&query=Mood+Hotel+Pattaya+Beach+Road" target="_blank" rel="noopener">Apri in Google Maps</a>
 </section>
 
@@ -353,7 +371,7 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(-
   </div>
   <h2>Aggiornamenti</h2>
   <button class="btn alt" id="updnow">Aggiorna l'app</button>
-  <p class="ver">L'app si aggiorna da sola quando la apri con internet. Questo tasto serve solo se vuoi forzarlo.<br>Versione: <span id="ver">9 · 24 set</span></p>
+  <p class="ver">L'app si aggiorna da sola quando la apri con internet. Questo tasto serve solo se vuoi forzarlo.<br>Versione: <span id="ver">10 · 25 set</span></p>
 </section>
 </main>
 
@@ -367,6 +385,12 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(-
 </div></nav>
 
 <button id="upd">C'è una versione nuova · tocca per aggiornare</button>
+
+<div id="docv" role="dialog" aria-modal="true" aria-label="Prenotazione">
+  <div class="bar2"><b id="doct"></b><button id="docclose">Chiudi</button></div>
+  <div class="body" id="docb"></div>
+  <div class="foot"><a id="docopen" target="_blank" rel="noopener">Apri grande</a><button id="docrm">Togli</button></div>
+</div>
 
 <div id="driver" role="dialog" aria-modal="true" aria-label="Indirizzo per l'autista">
   <div class="lbl">Please take me to:</div>
@@ -386,6 +410,54 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(-
     window.scrollTo(0,0);
   }
   btns.forEach(function(b){b.addEventListener('click',function(){show(b.dataset.p)})});
+
+
+  // prenotazioni: il file resta solo in questo telefono (non va mai sul sito)
+  var DOCN={bkk:'Prenotazione Galleria 10 Hotel',pty:'Prenotazione Mood Hotel Pattaya'};
+  function db(){return new Promise(function(ok,ko){var r=indexedDB.open('viaggio-docs',1);r.onupgradeneeded=function(){r.result.createObjectStore('docs')};r.onsuccess=function(){ok(r.result)};r.onerror=function(){ko(r.error)}})}
+  function dbDo(mode,fn){return db().then(function(d){return new Promise(function(ok,ko){var t=d.transaction('docs',mode),st=t.objectStore('docs'),q=fn(st);t.oncomplete=function(){ok(q&&q.result)};t.onerror=function(){ko(t.error)}})})}
+  function docGet(k){return dbDo('readonly',function(s){return s.get(k)})}
+  function docPut(k,v){return dbDo('readwrite',function(s){return s.put(v,k)})}
+  function docDel(k){return dbDo('readwrite',function(s){return s.delete(k)})}
+  try{if(navigator.storage&&navigator.storage.persist)navigator.storage.persist()}catch(e){}
+  var docUrl=null,docKey=null;
+  function showDoc(k,d){
+    if(docUrl)URL.revokeObjectURL(docUrl);
+    docKey=k;docUrl=URL.createObjectURL(d.blob);
+    document.getElementById('doct').textContent=DOCN[k];
+    var b=document.getElementById('docb');b.innerHTML='';
+    var el;
+    if(/pdf/.test(d.type)){el=document.createElement('iframe');el.title=DOCN[k]}else{el=document.createElement('img');el.alt=DOCN[k]}
+    el.src=docUrl;b.appendChild(el);
+    document.getElementById('docopen').href=docUrl;
+    document.getElementById('docv').classList.add('on');
+  }
+  function closeDoc(){document.getElementById('docv').classList.remove('on')}
+  document.getElementById('docclose').addEventListener('click',closeDoc);
+  document.getElementById('docrm').addEventListener('click',function(){
+    if(!confirm('Togliere questa prenotazione dall\'app? Il file originale resta in iCloud.'))return;
+    docDel(docKey).then(function(){closeDoc();drawDocs()});
+  });
+  function drawDocs(){
+    document.querySelectorAll('[data-doc]').forEach(function(box){
+      var k=box.dataset.doc;
+      docGet(k).then(function(d){
+        if(d){
+          box.innerHTML='<button class="btn main">📄 Mostra la prenotazione</button>';
+          box.querySelector('button').addEventListener('click',function(){showDoc(k,d)});
+        }else{
+          box.innerHTML='<label class="btn alt">📄 Aggiungi la prenotazione<input type="file" accept="image/*,application/pdf" hidden></label>'+
+            '<p class="dochint">Scegli il file da File → iCloud Drive → THAILANDIA 2026 VACANZA → Hotel. Resta salvato solo su questo telefono e si vede anche senza internet.</p>';
+          box.querySelector('input').addEventListener('change',function(){
+            var f=this.files[0];if(!f)return;
+            docPut(k,{blob:f,type:f.type,name:f.name}).then(function(){drawDocs();showDoc(k,{blob:f,type:f.type})})
+              .catch(function(){alert('Non riesco a salvare il file. Riprova.')});
+          });
+        }
+      }).catch(function(){box.innerHTML='<p class="dochint">Su questo browser non posso salvare file.</p>'});
+    });
+  }
+  drawDocs();
 
   // driver screen
   var D={

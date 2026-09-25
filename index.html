@@ -129,6 +129,24 @@ a{color:inherit}
 .sign{background:#1B1B1B;color:#FFD200;font-weight:700;font-size:17px;letter-spacing:.3px;border-radius:6px;padding:5px 10px;font-family:-apple-system,"Helvetica Neue",Arial,sans-serif}
 .photos{font-size:16px;font-weight:700;color:var(--jade);margin-left:4px}
 
+
+/* percorso in aeroporto, piano per piano */
+.route{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;margin:10px 0}
+.floor{display:grid;grid-template-columns:52px 1fr;gap:10px;align-items:stretch}
+.flab{background:var(--navy);color:var(--onnavy);border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:700;font-size:20px;line-height:1.1;text-align:center;padding:6px 2px}
+.flab small{font-size:12px;font-weight:400;opacity:.85}
+.fsteps{display:flex;flex-direction:column;gap:6px}
+.pill{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-size:18px;line-height:1.3}
+.pill b{display:block}
+.pill .sub{font-size:15px}
+.pill.goal{background:var(--gold);border-color:var(--gold);color:#14213D}
+.pill.goal .sub{color:#14213D}
+.pill.no{border-style:dashed;opacity:.8}
+.arr{text-align:center;color:var(--soft);font-size:15px;line-height:1.2;padding:2px 0}
+.arr::before{content:"↓";display:block;font-size:22px;color:var(--jade);font-weight:700}
+.down{margin:8px 0 8px 62px;background:var(--jadebg);border:1px solid var(--jade);border-radius:10px;padding:6px 12px;font-size:16px;font-weight:700;color:var(--jade)}
+.side{margin-top:12px;border-top:1px dashed var(--line);padding-top:10px}
+
 /* bottom tab bar */
 nav{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:1px solid var(--line);
   padding-bottom:env(safe-area-inset-bottom,0px);display:flex;justify-content:center;z-index:5}
@@ -265,7 +283,10 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(-
   <h2>Scalo a Sharjah (1 ora)</h2>
   <div class="card"><p>Scendi dall'aereo e <b>non uscire</b>: niente controllo passaporti. Segui i cartelli qui sotto e vai al gate del volo G9816.</p><div class="signs"><span class="sign">Transfer</span><span class="sign">Flight Connections</span><a class="photos" href="https://www.google.com/search?tbm=isch&q=Sharjah+airport+transfer+flight+connections+sign" target="_blank" rel="noopener">Vedi foto vere →</a></div></div>
 
-  <h2>A Bangkok, in aeroporto</h2>
+  <h2>A Bangkok: il percorso</h2>
+<div class="route"><div class="pill" style="margin-bottom:8px"><b>Scendi dall'aereo</b><span class="sub">Segui i cartelli Arrivals: il corridoio può essere lungo, anche 10–15 minuti a piedi.</span></div><div class="floor"><div class="flab">2<small>piano</small></div><div class="fsteps"><div class="pill"><b>Immigrazione</b><span class="sub">Passport Control: passaporto</span></div><div class="arr"></div><div class="pill"><b>Ritiro bagagli</b><span class="sub">Baggage Claim: nastro del G9816</span></div><div class="arr"></div><div class="pill"><b>Dogana</b><span class="sub">Nothing to Declare: corsia verde</span></div><div class="arr"></div><div class="pill"><b>Hall arrivi</b><span class="sub">Esci qui. Non accettare taxi offerti a voce.</span></div></div></div><div class="down">↓ Scala mobile o ascensore, un piano sotto</div><div class="floor"><div class="flab">1<small>piano</small></div><div class="fsteps"><div class="pill no"><b>Taxi pubblici</b><span class="sub">Stesso piano: non fare la loro fila</span></div><div class="arr"></div><div class="pill goal"><b>Porta 4 (Gate 4)</b><span class="sub">Esci sul marciapiede, cartello delle app</span></div><div class="arr"></div><div class="pill goal"><b>Bolt o Grab</b><span class="sub">Controlla la targa e sali</span></div></div></div><div class="side"><div class="floor"><div class="flab">B1<small>sotto</small></div><div class="fsteps"><div class="pill"><b>Se ti servono contanti</b><span class="sub">SuperRich e il treno per la città sono al piano B1: fai prima il cambio, poi risali al piano 1.</span></div></div></div></div></div><a class="btn alt" href="https://suvarnabhumi.airportthai.co.th/airport-map" target="_blank" rel="noopener">Mappa ufficiale dell'aeroporto</a><a class="btn alt" href="https://www.google.com/maps/search/?api=1&query=Suvarnabhumi+Airport+Arrivals" target="_blank" rel="noopener">Aeroporto in Google Maps</a><p class="sub">Disegno semplificato, non in scala. Le due mappe si aprono solo con internet: guardale a casa.</p>
+
+  <h2>A Bangkok, passo per passo</h2>
   <ol class="steps">
     <li><b class="t">Immigrazione</b>Appena scendi dall'aereo segui i cartelli qui sotto. Mostra il passaporto. Attesa possibile 30–60 minuti.<div class="signs"><span class="sign">Arrivals</span><span class="sign">Immigration</span><span class="sign">Passport Control</span><a class="photos" href="https://www.google.com/search?tbm=isch&q=Suvarnabhumi+airport+immigration+arrival+sign" target="_blank" rel="noopener">Vedi foto vere →</a></div></li>
     <li><b class="t">Ritiro bagagli</b>Sugli schermi cerca il volo G9816: ti indica il numero del nastro.<div class="signs"><span class="sign">Baggage Claim</span><span class="sign">Belt</span><a class="photos" href="https://www.google.com/search?tbm=isch&q=Suvarnabhumi+airport+baggage+claim+sign" target="_blank" rel="noopener">Vedi foto vere →</a></div></li>
@@ -379,7 +400,7 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(-
   </div>
   <h2>Aggiornamenti</h2>
   <button class="btn alt" id="updnow">Aggiorna l'app</button>
-  <p class="ver">L'app si aggiorna da sola quando la apri con internet. Questo tasto serve solo se vuoi forzarlo.<br>Versione: <span id="ver">11 · 25 set</span></p>
+  <p class="ver">L'app si aggiorna da sola quando la apri con internet. Questo tasto serve solo se vuoi forzarlo.<br>Versione: <span id="ver">12 · 25 set</span></p>
 </section>
 </main>
 

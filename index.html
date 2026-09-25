@@ -124,6 +124,11 @@ a{color:inherit}
 #docv .foot{display:flex;gap:8px;padding:10px 12px calc(10px + env(safe-area-inset-bottom,0px));background:#F3F6F5}
 #docv .foot a,#docv .foot button{flex:1;text-align:center;font:inherit;font-size:16px;font-weight:700;padding:10px;border-radius:10px;border:2px solid #D5DDE0;background:#fff;color:#14213D;text-decoration:none;cursor:pointer}
 
+/* cartelli dell'aeroporto: le parole da cercare */
+.signs{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:8px 0 4px}
+.sign{background:#1B1B1B;color:#FFD200;font-weight:700;font-size:17px;letter-spacing:.3px;border-radius:6px;padding:5px 10px;font-family:-apple-system,"Helvetica Neue",Arial,sans-serif}
+.photos{font-size:16px;font-weight:700;color:var(--jade);margin-left:4px}
+
 /* bottom tab bar */
 nav{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:1px solid var(--line);
   padding-bottom:env(safe-area-inset-bottom,0px);display:flex;justify-content:center;z-index:5}
@@ -257,16 +262,19 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(-
   <div class="card tip"><b>TDAC:</b> il modulo d'ingresso online, obbligatorio. Si compila dal 1 ottobre (massimo 3 giorni prima dell'arrivo): volo G9816, hotel Galleria 10. Salva la conferma nel telefono. La spunta la trovi nella scheda Fasi.</div>
   <a class="btn alt" href="https://tdac.immigration.go.th/arrival-card/" target="_blank" rel="noopener">Compila la TDAC</a>
 
-  <h2>In aeroporto</h2>
+  <h2>Scalo a Sharjah (1 ora)</h2>
+  <div class="card"><p>Scendi dall'aereo e <b>non uscire</b>: niente controllo passaporti. Segui i cartelli qui sotto e vai al gate del volo G9816.</p><div class="signs"><span class="sign">Transfer</span><span class="sign">Flight Connections</span><a class="photos" href="https://www.google.com/search?tbm=isch&q=Sharjah+airport+transfer+flight+connections+sign" target="_blank" rel="noopener">Vedi foto vere →</a></div></div>
+
+  <h2>A Bangkok, in aeroporto</h2>
   <ol class="steps">
-    <li><b class="t">Immigrazione</b>Segui i cartelli Arrival / Immigration. Mostra il passaporto. Attesa possibile 30–60 minuti.</li>
-    <li><b class="t">Ritiro bagagli</b>Sugli schermi cerca il volo G9816: ti indica il nastro (Belt).</li>
-    <li><b class="t">Dogana</b>Corsia verde "Nothing to declare", poi esci nella hall arrivi.</li>
-    <li><b class="t">Contanti</b>Cambio migliore da SuperRich al piano B1. Gli ATM costano circa 220 THB a prelievo.</li>
+    <li><b class="t">Immigrazione</b>Appena scendi dall'aereo segui i cartelli qui sotto. Mostra il passaporto. Attesa possibile 30–60 minuti.<div class="signs"><span class="sign">Arrivals</span><span class="sign">Immigration</span><span class="sign">Passport Control</span><a class="photos" href="https://www.google.com/search?tbm=isch&q=Suvarnabhumi+airport+immigration+arrival+sign" target="_blank" rel="noopener">Vedi foto vere →</a></div></li>
+    <li><b class="t">Ritiro bagagli</b>Sugli schermi cerca il volo G9816: ti indica il numero del nastro.<div class="signs"><span class="sign">Baggage Claim</span><span class="sign">Belt</span><a class="photos" href="https://www.google.com/search?tbm=isch&q=Suvarnabhumi+airport+baggage+claim+sign" target="_blank" rel="noopener">Vedi foto vere →</a></div></li>
+    <li><b class="t">Dogana</b>Prendi la corsia verde, poi esci nella hall arrivi (piano 2).<div class="signs"><span class="sign">Customs</span><span class="sign">Nothing to Declare</span><a class="photos" href="https://www.google.com/search?tbm=isch&q=Suvarnabhumi+airport+customs+nothing+to+declare+green+channel" target="_blank" rel="noopener">Vedi foto vere →</a></div></li>
+    <li><b class="t">Contanti</b>Cambio migliore da SuperRich al piano B1 (vicino al treno per la città). Gli ATM costano circa 220 THB a prelievo.<div class="signs"><span class="sign">SuperRich</span><span class="sign">Currency Exchange</span><a class="photos" href="https://www.google.com/search?tbm=isch&q=SuperRich+Suvarnabhumi+airport+B1" target="_blank" rel="noopener">Vedi foto vere →</a></div></li>
     <li><b class="t">Verso l'hotel</b>
       <p><b>Bolt o Grab</b> (consigliato): prezzo fisso, circa 350–500 THB.</p>
       <p><b>Dove si prende:</b> scendi al <b>piano 1</b>, lo stesso piano dei taxi pubblici (la hall arrivi è al piano 2). <b>Non metterti in fila per i taxi</b>: esci dalla <b>porta 4 (Gate 4)</b> e aspetta sul marciapiede esterno, al cartello delle app. Prenota mentre sei ancora dentro, con la rete accesa.</p>
-      <p>Non andare all'entrata principale (piano 4, Partenze): ci vai solo se te lo scrive l'autista nella chat. In chat puoi scrivere: <b>Gate 4, floor 1</b>. Controlla la targa prima di salire.</p>
+      <p>Non andare all'entrata principale (piano 4, Partenze): ci vai solo se te lo scrive l'autista nella chat. In chat puoi scrivere: <b>Gate 4, floor 1</b>. Controlla la targa prima di salire.</p><div class="signs"><span class="sign">Gate 4</span><span class="sign">Ride Hailing Pick-up</span><a class="photos" href="https://www.google.com/search?tbm=isch&q=Suvarnabhumi+airport+Grab+pick+up+gate+4+level+1" target="_blank" rel="noopener">Vedi foto vere →</a></div>
       <p><b>Taxi pubblico</b>: piano 1, biglietto al chiosco. Tassametro + 50 THB + pedaggi. Totale circa 400–500 THB.</p>
       <p>Con il traffico serale il viaggio dura 45–90 minuti.</p></li>
   </ol>
@@ -371,7 +379,7 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(-
   </div>
   <h2>Aggiornamenti</h2>
   <button class="btn alt" id="updnow">Aggiorna l'app</button>
-  <p class="ver">L'app si aggiorna da sola quando la apri con internet. Questo tasto serve solo se vuoi forzarlo.<br>Versione: <span id="ver">10 · 25 set</span></p>
+  <p class="ver">L'app si aggiorna da sola quando la apri con internet. Questo tasto serve solo se vuoi forzarlo.<br>Versione: <span id="ver">11 · 25 set</span></p>
 </section>
 </main>
 

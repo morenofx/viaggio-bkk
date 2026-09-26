@@ -196,7 +196,8 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(-
   <div class="alert" id="tdacwarn" hidden><b>TDAC non ancora spuntata.</b> Senza la TDAC all'immigrazione ti fermano: compilala ora, ci vogliono 10 minuti.
     <a class="btn main" href="https://tdac.immigration.go.th/arrival-card/" target="_blank" rel="noopener">Compila la TDAC</a></div>
   <button class="btn main" id="gofasi">Vedi tutte le fasi da fare</button>
-  <a class="btn alt" href="promemoria-viaggio.ics">🔔 Metti i promemoria nel Calendario</a>
+  <a class="btn alt" href="https://morenofx.github.io/viaggio-bkk/promemoria-viaggio.ics" target="_blank" rel="noopener">🔔 Metti i promemoria nel Calendario</a>
+  <button class="btn alt small" id="calcopy">Se non si apre: copia il link e incollalo in Safari</button>
   <p class="cal">13 avvisi all'ora giusta, anche senza internet: TDAC, check-in, partenze, scali, check-out. Tocca e poi "Aggiungi tutto". Fallo una volta sola.</p>
   <button class="btn alt" data-driver="bkk">Mostra all'autista: hotel Bangkok</button>
   <button class="btn alt" data-driver="pty">Mostra all'autista: hotel Pattaya</button>
@@ -414,7 +415,7 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(-
   </div>
   <h2>Aggiornamenti</h2>
   <button class="btn alt" id="updnow">Aggiorna l'app</button>
-  <p class="ver">L'app si aggiorna da sola quando la apri con internet. Questo tasto serve solo se vuoi forzarlo.<br>Versione: <span id="ver">18 · 26 set</span></p>
+  <p class="ver">L'app si aggiorna da sola quando la apri con internet. Questo tasto serve solo se vuoi forzarlo.<br>Versione: <span id="ver">19 · 26 set</span></p>
 </section>
 </main>
 
@@ -454,6 +455,13 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(-
   }
   btns.forEach(function(b){b.addEventListener('click',function(){show(b.dataset.p)})});
 
+
+  // promemoria: dall'icona della Home l'iPhone a volte non apre il Calendario; in Safari si'
+  document.getElementById('calcopy').addEventListener('click',function(){
+    var b=this,u='https://morenofx.github.io/viaggio-bkk/promemoria-viaggio.ics';
+    function ok(){b.textContent='Link copiato: apri Safari, tieni premuta la barra e scegli Incolla e vai'}
+    try{navigator.clipboard.writeText(u).then(ok,function(){prompt('Copia questo link e incollalo in Safari:',u)})}catch(e){prompt('Copia questo link e incollalo in Safari:',u)}
+  });
 
   // prenotazioni: il file resta solo in questo telefono (non va mai sul sito)
   var DOCN={bkk:'Prenotazione Galleria 10 Hotel',pty:'Voucher Agoda Mood Hotel Pattaya',pol:'Polizza Allianz Globy Rosso'};

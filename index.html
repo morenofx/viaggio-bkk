@@ -414,7 +414,7 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(-
   </div>
   <h2>Aggiornamenti</h2>
   <button class="btn alt" id="updnow">Aggiorna l'app</button>
-  <p class="ver">L'app si aggiorna da sola quando la apri con internet. Questo tasto serve solo se vuoi forzarlo.<br>Versione: <span id="ver">17 · 26 set</span></p>
+  <p class="ver">L'app si aggiorna da sola quando la apri con internet. Questo tasto serve solo se vuoi forzarlo.<br>Versione: <span id="ver">18 · 26 set</span></p>
 </section>
 </main>
 
@@ -490,7 +490,7 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(-
           box.querySelector('button').addEventListener('click',function(){showDoc(k,d)});
         }else{
           box.innerHTML='<label class="btn alt">'+(k==='pol'?'📄 Aggiungi la polizza':'📄 Aggiungi la prenotazione')+'<input type="file" accept="image/*,application/pdf" hidden></label>'+
-            '<p class="dochint">Scegli il file da File → iCloud Drive → THAILANDIA 2026 VACANZA'+(k==='pol'?' (il file Nr Polizza…pdf)':' → Hotel')+'. Resta salvato solo su questo telefono e si vede anche senza internet.</p>';
+            '<p class="dochint">Scegli il file da File → iCloud Drive → THAILANDIA 2026 VACANZA'+(k==='pol'?' (il file POLIZZA Allianz Thailandia 2026.pdf)':' → Hotel')+'. Resta salvato solo su questo telefono e si vede anche senza internet.</p>';
           box.querySelector('input').addEventListener('change',function(){
             var f=this.files[0];if(!f)return;
             docPut(k,{blob:f,type:f.type,name:f.name}).then(function(){drawDocs();showDoc(k,{blob:f,type:f.type})})

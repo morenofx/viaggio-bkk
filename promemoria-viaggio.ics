@@ -1,0 +1,199 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//viaggio-bkk//IT
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Viaggio Thailandia
+BEGIN:VEVENT
+UID:viaggio-bkk-00@morenofx.github.io
+DTSTAMP:20260926T000000Z
+DTSTART:20261001T080000Z
+DTEND:20261001T081500Z
+SUMMARY:Compila la TDAC
+DESCRIPTION:Si apre oggi. Volo G9816\, hotel Galleria 10 Hotel Bangkok\, 2
+ 1 Sukhumvit Soi 10. https://tdac.immigration.go.th/arrival-card/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Compila la TDAC
+TRIGGER:PT0M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:viaggio-bkk-01@morenofx.github.io
+DTSTAMP:20260926T000000Z
+DTSTART:20261002T160000Z
+DTEND:20261002T161500Z
+SUMMARY:Mood Hotel: cancella la vecchia prenotazione Revolut
+DESCRIPTION:Se non l'hai già fatto. Scadenza gratis: sabato 3 ottobre all
+ e 10:00 ora thailandese = 05:00 ora italiana. La prenotazione valida è qu
+ ella Agoda.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Mood Hotel: cancella la vecchia prenotazione Revolut
+TRIGGER:PT0M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:viaggio-bkk-02@morenofx.github.io
+DTSTAMP:20260926T000000Z
+DTSTART:20261002T180000Z
+DTEND:20261002T183000Z
+SUMMARY:Check-in online Air Arabia e valigia
+DESCRIPTION:Check-in online\, carte d'imbarco salvate. Passaporto\, contan
+ ti\, adattatore\, cambio nel bagaglio a mano.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Check-in online Air Arabia e valigia
+TRIGGER:PT0M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:viaggio-bkk-03@morenofx.github.io
+DTSTAMP:20260926T000000Z
+DTSTART:20261003T150000Z
+DTEND:20261003T160000Z
+SUMMARY:Parti per l'aeroporto di Bergamo
+DESCRIPTION:Al banco Air Arabia entro le 19:50. Volo G9696 alle 22:50.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Parti per l'aeroporto di Bergamo
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:viaggio-bkk-04@morenofx.github.io
+DTSTAMP:20260926T000000Z
+DTSTART:20261003T175000Z
+DTEND:20261003T182000Z
+SUMMARY:Banco Air Arabia: consegna la valigia
+DESCRIPTION:Chiedi che arrivi a Bangkok (etichetta BKK) e la carta d'imbar
+ co anche per Sharjah - Bangkok. Tieni lo scontrino dell'etichetta.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Banco Air Arabia: consegna la valigia
+TRIGGER:PT0M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:viaggio-bkk-05@morenofx.github.io
+DTSTAMP:20260926T000000Z
+DTSTART:20261003T205000Z
+DTEND:20261003T210500Z
+SUMMARY:Volo G9696 Bergamo - Sharjah
+DESCRIPTION:Imbarco circa 40 minuti prima.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Volo G9696 Bergamo - Sharjah
+TRIGGER:-PT60M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:viaggio-bkk-06@morenofx.github.io
+DTSTAMP:20260926T000000Z
+DTSTART:20261004T025000Z
+DTEND:20261004T035000Z
+SUMMARY:Scalo a Sharjah: 1 ora
+DESCRIPTION:Non uscire. Segui Transfer / Flight Connections e vai al gate 
+ del G9816. Dati: scegli Saily.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Scalo a Sharjah: 1 ora
+TRIGGER:PT0M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:viaggio-bkk-07@morenofx.github.io
+DTSTAMP:20260926T000000Z
+DTSTART:20261004T102500Z
+DTEND:20261004T112500Z
+SUMMARY:Atterraggio a Bangkok
+DESCRIPTION:Dati: scegli AIS. Immigrazione\, bagagli (G9816)\, dogana. Bol
+ t o Grab: piano 1\, porta 4.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Atterraggio a Bangkok
+TRIGGER:PT0M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:viaggio-bkk-08@morenofx.github.io
+DTSTAMP:20260926T000000Z
+DTSTART:20261007T050000Z
+DTEND:20261007T053000Z
+SUMMARY:Check-out Galleria 10 Hotel
+DESCRIPTION:Entro le 12:00. Poi Bolt o autobus da Ekkamai per il Mood Hote
+ l Pattaya.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Check-out Galleria 10 Hotel
+TRIGGER:-PT60M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:viaggio-bkk-09@morenofx.github.io
+DTSTAMP:20260926T000000Z
+DTSTART:20261016T130000Z
+DTEND:20261016T133000Z
+SUMMARY:Valigia e check-in online del ritorno
+DESCRIPTION:Volo G9817 domani alle 18:25. Tieni da parte i baht per il tra
+ sferimento.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Valigia e check-in online del ritorno
+TRIGGER:PT0M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:viaggio-bkk-10@morenofx.github.io
+DTSTAMP:20260926T000000Z
+DTSTART:20261017T050000Z
+DTEND:20261017T053000Z
+SUMMARY:Check-out Mood Hotel e partenza per l'aeroporto
+DESCRIPTION:Check-out entro le 12:00\, parti entro le 12:30 per Suvarnabhu
+ mi (piano 4\, Partenze).
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Check-out Mood Hotel e partenza per l'aeroporto
+TRIGGER:-PT60M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:viaggio-bkk-11@morenofx.github.io
+DTSTAMP:20260926T000000Z
+DTSTART:20261017T112500Z
+DTEND:20261017T114000Z
+SUMMARY:Volo G9817 Bangkok - Sharjah
+DESCRIPTION:Banchi Air Arabia al piano 4: arriva entro le 15:30.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Volo G9817 Bangkok - Sharjah
+TRIGGER:-PT60M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:viaggio-bkk-12@morenofx.github.io
+DTSTAMP:20260926T000000Z
+DTSTART:20261017T175000Z
+DTEND:20261017T185000Z
+SUMMARY:Scalo a Sharjah: 10 ore
+DESCRIPTION:Resta nell'area transiti\, segui Transfer. Dati: scegli Saily.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Scalo a Sharjah: 10 ore
+TRIGGER:PT0M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:viaggio-bkk-13@morenofx.github.io
+DTSTAMP:20260926T000000Z
+DTSTART:20261018T035000Z
+DTEND:20261018T040500Z
+SUMMARY:Volo G9793 Sharjah - Bergamo
+DESCRIPTION:Arrivo a Bergamo alle 12:30.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Volo G9793 Sharjah - Bergamo
+TRIGGER:-PT60M
+END:VALARM
+END:VEVENT
+END:VCALENDAR

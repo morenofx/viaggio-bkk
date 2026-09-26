@@ -233,7 +233,7 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(-
   <label class="ph"><input type="checkbox" data-f="f30"><span><span class="tm">Passaporto</span><span class="tx">Valido almeno fino ad aprile 2027 (6 mesi dopo l'arrivo). Foto del passaporto e della TDAC nel telefono e in un'email a te stesso.</span></span></label>
   <label class="ph imp"><input type="checkbox" data-f="f31"><span><span class="tm">Scalo di 1 ora</span><span class="tx">Controlla che i voli G9696 e G9816 abbiano lo stesso codice di prenotazione: così, se perdi la coincidenza, Air Arabia ti rimette sul volo dopo.</span></span></label>
   <label class="ph"><input type="checkbox" data-f="f32"><span><span class="tm">Bagaglio</span><span class="tx">Nella prenotazione Air Arabia controlla quanti chili di valigia da stiva hai. Se manca, compralo online: al banco costa molto di più.</span></span></label>
-  <label class="ph imp"><input type="checkbox" data-f="f33"><span><span class="tm">Mood Hotel</span><span class="tx">Annullamento gratuito fino a sabato 3 ottobre alle 10:00. Dopo non si annulla più.</span></span></label>
+  <label class="ph imp"><input type="checkbox" data-f="f33"><span><span class="tm">Mood Hotel: doppia prenotazione</span><span class="tx">Vecchia prenotazione con Revolut: se non l'hai già fatto, cancellala entro sabato 3 ottobre alle 10:00, se no la paghi due volte. Quella nuova con Agoda è non rimborsabile e non si può modificare.</span></span></label>
   <label class="ph"><input type="checkbox" data-f="f35"><span><span class="tm">Senza rete</span><span class="tx">Google Maps: scarica le zone di Bangkok e Pattaya. Google Traduttore: scarica il thailandese.</span></span></label>
   <label class="ph"><input type="checkbox" data-f="f36"><span><span class="tm">Soldi</span><span class="tx">Carta senza commissioni all'estero (Revolut, Wise o simili). Se serve, avvisa la banca del viaggio.</span></span></label>
   <label class="ph"><input type="checkbox" data-f="f37"><span><span class="tm">Bagaglio a mano</span><span class="tx">Power bank solo nel bagaglio a mano, mai in valigia. Repellente per zanzare, crema solare, k-way leggero.</span></span></label>
@@ -345,14 +345,15 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(-
   <h2>Pattaya · 7 → 17 ottobre</h2>
   <div class="card hotel">
     <div class="name">Mood Hotel Pattaya</div>
-    <p>115/11 Moo 9, Pattaya Beach Road, Pattaya</p>
+    <p>115/11 Moo 9, Pattaya Beach Road, Soi 3, North Pattaya, Chonburi 20150</p>
     <p><b>Check-in</b> 7 ott, dalle 14:00<br><b>Check-out</b> 17 ott, entro le 12:00</p>
-    <p class="sub">Mood S Double Bed · annullamento gratuito fino a sab 3 ott, 10:00</p>
+    <p class="sub">Mood S Twin Room (richiesto letto grande) · prenotato con Agoda · non rimborsabile</p>
+    <p class="sub">Al check-in: passaporto e voucher Agoda (lo mostri dall'app).</p>
     <p><a href="tel:+6638259511"><b>Chiama l'hotel: +66 38 259 511</b></a></p>
   </div>
   <button class="btn main" data-driver="pty">Mostra all'autista</button>
   <div data-doc="pty"></div>
-  <a class="btn alt" href="https://www.google.com/maps/search/?api=1&query=Mood+Hotel+Pattaya+Beach+Road" target="_blank" rel="noopener">Apri in Google Maps</a>
+  <a class="btn alt" href="https://www.google.com/maps/search/?api=1&query=Mood+Hotel+Pattaya+Beach+Road+Soi+3" target="_blank" rel="noopener">Apri in Google Maps</a>
 </section>
 
 <!-- RITORNO -->
@@ -402,7 +403,7 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(-
   </div>
   <h2>Aggiornamenti</h2>
   <button class="btn alt" id="updnow">Aggiorna l'app</button>
-  <p class="ver">L'app si aggiorna da sola quando la apri con internet. Questo tasto serve solo se vuoi forzarlo.<br>Versione: <span id="ver">13 · 25 set</span></p>
+  <p class="ver">L'app si aggiorna da sola quando la apri con internet. Questo tasto serve solo se vuoi forzarlo.<br>Versione: <span id="ver">14 · 26 set</span></p>
 </section>
 </main>
 
@@ -444,7 +445,7 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(-
 
 
   // prenotazioni: il file resta solo in questo telefono (non va mai sul sito)
-  var DOCN={bkk:'Prenotazione Galleria 10 Hotel',pty:'Prenotazione Mood Hotel Pattaya'};
+  var DOCN={bkk:'Prenotazione Galleria 10 Hotel',pty:'Voucher Agoda Mood Hotel Pattaya'};
   function db(){return new Promise(function(ok,ko){var r=indexedDB.open('viaggio-docs',1);r.onupgradeneeded=function(){r.result.createObjectStore('docs')};r.onsuccess=function(){ok(r.result)};r.onerror=function(){ko(r.error)}})}
   function dbDo(mode,fn){return db().then(function(d){return new Promise(function(ok,ko){var t=d.transaction('docs',mode),st=t.objectStore('docs'),q=fn(st);t.oncomplete=function(){ok(q&&q.result)};t.onerror=function(){ko(t.error)}})})}
   function docGet(k){return dbDo('readonly',function(s){return s.get(k)})}
@@ -489,13 +490,15 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(-
     });
   }
   drawDocs();
+  // il Mood Hotel e' passato ad Agoda: la ricevuta Revolut salvata prima non vale piu'
+  try{if(!localStorage.getItem('pty-agoda')){localStorage.setItem('pty-agoda','1');docGet('pty').then(function(d){if(d)docDel('pty').then(drawDocs)})}}catch(e){}
 
   // driver screen
   var D={
     bkk:['Galleria 10 Hotel Bangkok','21 Sukhumvit Soi 10,<br>Sukhumvit Road, Klongtoey,<br>Bangkok 10110',
          'สุขุมวิท ซอย 10<br>แขวงคลองเตย เขตคลองเตย<br>กรุงเทพฯ 10110'],
-    pty:['Mood Hotel Pattaya','115/11 Moo 9,<br>Pattaya Beach Road,<br>Pattaya',
-         '115/11 หมู่ 9 ถนนพัทยาสาย&nbsp;1<br>พัทยา ชลบุรี'],
+    pty:['Mood Hotel Pattaya','115/11 Moo 9,<br>Pattaya Beach Road, Soi 3,<br>North Pattaya',
+         'มู้ด โฮเทล พัทยา<br>115/11 หมู่ 9 ถนนเลียบชายหาด<br>ซอยพัทยา 3 พัทยาเหนือ<br>ชลบุรี 20150'],
     ekk:['Ekkamai Bus Terminal','Eastern Bus Terminal,<br>Sukhumvit Road, Ekkamai,<br>Bangkok',
          'สถานีขนส่งเอกมัย<br>(สถานีขนส่งผู้โดยสารกรุงเทพ ตะวันออก)'],
     air:['Suvarnabhumi Airport (BKK)','Departures, Air Arabia',

@@ -19,21 +19,6 @@ TRIGGER:PT0M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:viaggio-bkk-01@morenofx.github.io
-DTSTAMP:20260926T000000Z
-DTSTART:20261002T160000Z
-DTEND:20261002T161500Z
-SUMMARY:Mood Hotel: cancella la vecchia prenotazione Revolut
-DESCRIPTION:Se non l'hai già fatto. Scadenza gratis: sabato 3 ottobre all
- e 10:00 ora thailandese = 05:00 ora italiana. La prenotazione valida è qu
- ella Agoda.
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Mood Hotel: cancella la vecchia prenotazione Revolut
-TRIGGER:PT0M
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
 UID:viaggio-bkk-02@morenofx.github.io
 DTSTAMP:20260926T000000Z
 DTSTART:20261002T180000Z
@@ -196,4 +181,3 @@ DESCRIPTION:Volo G9793 Sharjah - Bergamo
 TRIGGER:-PT60M
 END:VALARM
 END:VEVENT
-END:VCALENDAR

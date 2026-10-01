@@ -440,7 +440,7 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(-
   </div>
   <h2>Aggiornamenti</h2>
   <button class="btn alt" id="updnow">Aggiorna l'app</button>
-  <p class="ver">L'app si aggiorna da sola quando la apri con internet. Questo tasto serve solo se vuoi forzarlo.<br>Versione: <span id="ver">21 · 27 set</span></p>
+  <p class="ver">L'app si aggiorna da sola quando la apri con internet. Questo tasto serve solo se vuoi forzarlo.<br>Versione: <span id="ver">22 · 1 ott</span></p>
 </section>
 </main>
 
@@ -634,6 +634,16 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(-
     h.querySelectorAll('.note')[0].textContent=n[3];
     h.querySelector('.count').textContent=c;
     h.querySelectorAll('.note')[1].textContent=fmt(new Date(n[0]),n[1]);
+    // tasto per seguire il volo: compare quando il prossimo volo parte entro 12 ore
+    for(var k=0;k<E.length;k++){
+      var t=Date.parse(E[k][0]);
+      if(t>now&&/^Volo /.test(E[k][2])){
+        if(t-now<12*36e5){var fno=E[k][3].split(' ')[0];
+          var a=document.createElement('a');a.className='btn main';a.style.marginBottom='0';a.target='_blank';a.rel='noopener';
+          a.href='https://www.flightradar24.com/data/flights/'+fno.toLowerCase();a.textContent='Segui il volo '+fno;h.appendChild(a);}
+        break;
+      }
+    }
   }
   if(tdacIn) tdacIn.addEventListener('change',render);
   document.addEventListener('visibilitychange',function(){if(!document.hidden)render()});

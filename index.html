@@ -443,7 +443,7 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(-
   </div>
   <h2>Aggiornamenti</h2>
   <button class="btn alt" id="updnow">Aggiorna l'app</button>
-  <p class="ver">L'app si aggiorna da sola quando la apri con internet. Questo tasto serve solo se vuoi forzarlo.<br>Versione: <span id="ver">23 · 2 ott</span></p>
+  <p class="ver">L'app si aggiorna da sola quando la apri con internet. Questo tasto serve solo se vuoi forzarlo.<br>Versione: <span id="ver">24 · 2 ott</span></p>
 </section>
 </main>
 
@@ -487,13 +487,13 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(-
 
   function viberCall(num,btn){
     var n=String(num).replace(/[^\d+]/g,'');
-    var go=function(){btn.textContent='Numero copiato: in Viber tieni premuto e Incolla';setTimeout(function(){location.href='viber://'},400)};
+    var go=function(){btn.textContent='✓ Copiato: apri Viber → tastierino → tieni premuto → Incolla'};
     try{navigator.clipboard.writeText(n).then(go,function(){prompt('Copia il numero e incollalo in Viber:',n)})}catch(e){prompt('Copia il numero e incollalo in Viber:',n)}
   }
   // sotto ogni numero italiano o thailandese: tasto per chiamarlo con Viber Out
   document.querySelectorAll('#p-utili a.tel').forEach(function(a){
     var num=a.getAttribute('href').replace('tel:','');if(num.length<6)return;
-    var d=document.createElement('div');d.className='vib';d.innerHTML='<button>Chiama con Viber</button>';
+    var d=document.createElement('div');d.className='vib';d.innerHTML='<button>Copia per Viber</button>';
     a.insertAdjacentElement('afterend',d);
     d.querySelector('button').addEventListener('click',function(){viberCall(num,this)});
   });

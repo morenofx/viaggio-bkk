@@ -150,6 +150,8 @@ a{color:inherit}
 .cal{font-size:16px;color:var(--soft);margin:-4px 0 10px}
 .alt-h{display:flex;align-items:center;gap:10px}
 .tag{background:var(--jade);color:#fff;font-size:15px;font-weight:700;border-radius:999px;padding:3px 10px}
+.vib{display:flex;justify-content:flex-end;margin:-6px 0 6px}
+.vib button{background:#7360F2;color:#fff;border:0;border-radius:999px;font:inherit;font-size:15px;font-weight:700;padding:5px 14px;cursor:pointer}
 /* bottom tab bar */
 nav{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:1px solid var(--line);
   padding-bottom:env(safe-area-inset-bottom,0px);display:flex;justify-content:center;z-index:5}
@@ -409,7 +411,8 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(-
     <a class="tel" href="tel:1155"><span>Polizia turistica<br><span class="sub">parla inglese</span></span><strong>1155</strong></a>
     <a class="tel" href="tel:191"><span>Polizia</span><strong>191</strong></a>
     <a class="tel" href="tel:1669"><span>Ambulanza</span><strong>1669</strong></a>
-    <a class="tel" href="tel:+390223695862"><span>Assicurazione Allianz, 24 ore su 24<br><span class="sub">chiama PRIMA di andare dal medico</span></span><strong>+39 02 2369 5862</strong></a>
+    <a class="tel" href="tel:+390226609283"><span>Allianz: assistenza medica 24h<br><span class="sub">numero dell'app Allyz · chiama PRIMA del medico</span></span><strong>+39 02 2660 9283</strong></a>
+    <a class="tel" href="tel:+390223695862"><span>Allianz: assistenza in viaggio 24h<br><span class="sub">numero scritto sulla polizza</span></span><strong>+39 02 2369 5862</strong></a>
     <a class="tel" href="tel:+390226609690"><span>Allianz, per aprire un sinistro<br><span class="sub">bagaglio, rimborsi</span></span><strong>+39 02 2660 9690</strong></a>
     <a class="tel" href="tel:+66818256103"><span>Ambasciata d'Italia: emergenze gravi<br><span class="sub">24 ore su 24</span></span><strong>081 825 6103</strong></a>
     <a class="tel" href="tel:+6622504970"><span>Ambasciata d'Italia<br><span class="sub">Bangkok, orari d'ufficio</span></span><strong>02 250 4970</strong></a>
@@ -440,7 +443,7 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(-
   </div>
   <h2>Aggiornamenti</h2>
   <button class="btn alt" id="updnow">Aggiorna l'app</button>
-  <p class="ver">L'app si aggiorna da sola quando la apri con internet. Questo tasto serve solo se vuoi forzarlo.<br>Versione: <span id="ver">22 · 1 ott</span></p>
+  <p class="ver">L'app si aggiorna da sola quando la apri con internet. Questo tasto serve solo se vuoi forzarlo.<br>Versione: <span id="ver">23 · 2 ott</span></p>
 </section>
 </main>
 
@@ -480,6 +483,20 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(-
   }
   btns.forEach(function(b){b.addEventListener('click',function(){show(b.dataset.p)})});
 
+
+
+  function viberCall(num,btn){
+    var n=String(num).replace(/[^\d+]/g,'');
+    var go=function(){btn.textContent='Numero copiato: in Viber tieni premuto e Incolla';setTimeout(function(){location.href='viber://'},400)};
+    try{navigator.clipboard.writeText(n).then(go,function(){prompt('Copia il numero e incollalo in Viber:',n)})}catch(e){prompt('Copia il numero e incollalo in Viber:',n)}
+  }
+  // sotto ogni numero italiano o thailandese: tasto per chiamarlo con Viber Out
+  document.querySelectorAll('#p-utili a.tel').forEach(function(a){
+    var num=a.getAttribute('href').replace('tel:','');if(num.length<6)return;
+    var d=document.createElement('div');d.className='vib';d.innerHTML='<button>Chiama con Viber</button>';
+    a.insertAdjacentElement('afterend',d);
+    d.querySelector('button').addEventListener('click',function(){viberCall(num,this)});
+  });
 
   // promemoria: dall'icona della Home l'iPhone a volte non apre il Calendario; in Safari si'
   document.getElementById('calcopy').addEventListener('click',function(){
